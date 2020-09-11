@@ -6,10 +6,10 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: demo
+  - host: proxy
     http:
       paths:
         - path: /
           backend:
-            serviceName: app
-            servicePort: 80
+            serviceName: proxyapp
+            servicePort: 90

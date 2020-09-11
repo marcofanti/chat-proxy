@@ -2,7 +2,7 @@ apiVersion: skaffold/v2beta5
 kind: Config
 build:
   artifacts:
-    - image: localhost:5000/apps/demo
+    - image: localhost:5000/apps/proxy
 #      custom:
 #        buildCommand: ./mvnw spring-boot:build-image -D spring-boot.build-image.imageName=$IMAGE && docker push $IMAGE
       buildpacks:
@@ -23,4 +23,4 @@ build:
 deploy:
   kustomize:
     paths:
-      - "src/k8s/demo/"
+      - "src/k8s/proxy/"

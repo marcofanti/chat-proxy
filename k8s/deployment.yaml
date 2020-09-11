@@ -3,31 +3,31 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: k8s-demo-app
-  name: k8s-demo-app
+    app: behaviosec-proxy-app
+  name: behaviosec-proxy-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: k8s-demo-app
+      app: behaviosec-proxy-app
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: k8s-demo-app
+        app: behaviosec-proxy-app
     spec:
       containers:
-      - image: localhost:5000/apps/demo
+      - image: localhost:5000/apps/proxy
         name: demo
         resources: {}
         readinessProbe:
           httpGet:
-            port: 8080
+            port: 9090
             path: /actuator/health/readiness
         livenessProbe:
           httpGet:
-            port: 8080
+            port: 9090
             path: /actuator/health/liveness
         lifecycle:
           preStop:

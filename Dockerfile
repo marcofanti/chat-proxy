@@ -11,4 +11,4 @@ ARG DEPENDENCY=/workspace/app/target
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /workspace/BOOT-INF/lib
 COPY --from=build ${DEPENDENCY}/META-INF /workspace/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /workspace/BOOT-INF/classes
-ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -cp /workspace/BOOT-INF/classes:/workspace/BOOT-INF/lib/*:/workspace/BOOT-INF com.example.demo.DemoApplication"]
+ENTRYPOINT ["sh", "-c", "java ${JAVA_OPTS} -cp /workspace/BOOT-INF/classes:/workspace/BOOT-INF/lib/*:/workspace/BOOT-INF com.behaviosec.controller.ProxyControllerApplication"]

@@ -1,14 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app
+  name: proxyapp
 spec:
   replicas: 2
   template:
     spec:
       containers:
-      - image: apps/demo
-        name: app
+      - image: apps/proxy
+        name: proxyapp
         env:
         - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
           value: "*"
@@ -27,19 +27,19 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app
+  name: proxyapp
 spec:
   ports:
-  - name: 80-8080
-    port: 80
+  - name: 90-9090
+    port: 90
     protocol: TCP
-    targetPort: 8080
+    targetPort: 9090
 
 ---
 apiVersion: autoscaling/v2beta2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: app
+  name: proxyapp
 spec:
   maxReplicas: 3
   metrics:
@@ -53,4 +53,4 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: app
+    name: proxyapp
